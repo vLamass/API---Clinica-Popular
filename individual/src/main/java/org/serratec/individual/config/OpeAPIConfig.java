@@ -3,9 +3,9 @@ package org.serratec.individual.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
 
@@ -17,9 +17,9 @@ public class OpeAPIConfig {
     public OpenAPI myOpenAPI(){
 
         Contact contato  = new Contact();
-        contato.setEmail(email);
-        contato.setName(name);
-        contato.url(url);
+        contato.setEmail("email");
+        contato.setName("name");
+        contato.url("url");
 
         License apacheLicense = new License()
             .name("Apache License")

@@ -1,6 +1,7 @@
 package org.serratec.individual.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -8,6 +9,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,7 +30,7 @@ import lombok.Setter;
 @Setter //Cria os Metodos setters
 @Entity
 @Table(name = "medicos")
-@Schema(description = "Entidades responsaveis por representas medicos")
+@Schema(description = "Entidade responsaveil por representar medicos")
 public class Medico {
 
     @Id
@@ -37,7 +42,7 @@ public class Medico {
     @Size(max = 80)
     @Column(nullable = false, length = 80)
     @Schema(description = "Nome completo do medico", maxLength = 80)
-    private String nome;
+    private String nomeMedico;
 
     @Column(nullable = false, unique = true)
     @Pattern(regexp = "^\\d{1,6}/(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$", message = "CRM inválido" )
@@ -45,7 +50,7 @@ public class Medico {
     private String crm;
 
     @Email
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @Schema(description = "E-mail do paciente")
     private String email;
 
@@ -54,4 +59,18 @@ public class Medico {
     private LocalDate dataContratacao = LocalDate.now();
 
     //ativo a estudar se implemto
+
+    @OneToMany(mappedBy = "medico")
+    private List<Consulta> consultas;
+
+    @ManyToMany
+    @JoinTable(
+        name = "medico_especialidade",
+        joinColumns = @JoinColumn(name = "medico_id"),
+        inverseJoinColumns = @JoinColumn(name = "especialidade_id")
+    )
+        private List<Especialidade> especialidades;
+
+
+
 }

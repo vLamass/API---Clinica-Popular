@@ -1,6 +1,7 @@
 package org.serratec.individual.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -10,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -42,7 +42,7 @@ public class Paciente {
     @Size(max = 80)
     @Column(nullable = false, length = 80)
     @Schema(description = "Nome completo do paciente", maxLength = 80)
-    private String nome;
+    private String nomePaciente;
 
     @CPF
     @Column(length = 11)

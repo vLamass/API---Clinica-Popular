@@ -46,7 +46,7 @@ public class Prontuario {
 
     @Column(columnDefinition = "TEXT")
     @Schema(description = "Observações adicionais sobre o paciente")
-    private String observacoes;
+    private String observacoesProntuario;
 
     @Column(name = "data_criacao", nullable = false)
     @Schema(description = "Data de criação do prontuário")
