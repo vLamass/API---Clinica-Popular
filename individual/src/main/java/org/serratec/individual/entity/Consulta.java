@@ -50,7 +50,7 @@ public class Consulta {
 
     @Column(length = 1000)
     @Schema(description = "Observações da consulta", maxLength = 1000)
-    private String observacaoConsulta;
+    private String observacao;
 
     @Enumerated(EnumType.STRING)
     @Schema(description = "Opções de status", example = "AGENDADA, REALIZADA, CANCELADA, REMARCADA")

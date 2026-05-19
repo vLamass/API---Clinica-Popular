@@ -12,7 +12,7 @@ public class ProntuarioDTORequest {
     @NotBlank
     private String historicoMedico;
 
-    private String Alergias;
+    private String alergias;
 
     private String medicamentoEmUso;
 

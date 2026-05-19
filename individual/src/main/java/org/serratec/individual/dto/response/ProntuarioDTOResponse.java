@@ -4,8 +4,21 @@ import java.time.LocalDate;
 
 import org.serratec.individual.entity.Prontuario;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import lombok.Getter;
 import lombok.Setter;
+
+@JsonPropertyOrder({
+    "id",
+    "pacienteID",
+    "nomePaciente",
+    "historicoMedico",
+    "alergias",
+    "medicamentosEmUsos",
+    "observacoesProntuario",
+    "dataCriacao"
+})
 
 @Getter
 @Setter
@@ -44,7 +57,7 @@ public class ProntuarioDTOResponse {
 
             if (p.getPaciente() != null) {
                 this.pacienteId = p.getPaciente().getId();
-                this.nomePaciente = p.getPaciente().getNomePaciente();
+                this.nomePaciente = p.getPaciente().getNome();
             }
         }
 

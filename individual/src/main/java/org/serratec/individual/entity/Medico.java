@@ -42,7 +42,7 @@ public class Medico {
     @Size(max = 80)
     @Column(nullable = false, length = 80)
     @Schema(description = "Nome completo do medico", maxLength = 80)
-    private String nomeMedico;
+    private String nome;
 
     @Column(nullable = false, unique = true)
     @Pattern(regexp = "^\\d{1,6}/(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$", message = "CRM inválido" )

@@ -35,7 +35,7 @@ public class Especialidade {
     @NotBlank
     @Column(nullable = false, length = 60, unique = true)
     @Schema(description = "Nome da especialidade", example = "Cardiologia, Pediatria, Dermatologia, Ortopedia, Clínico Geral")
-    private String nomeEspecialidade;
+    private String nome;
 
     @NotBlank
     @Column(nullable = false,length = 500)

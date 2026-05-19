@@ -42,7 +42,7 @@ public class Paciente {
     @Size(max = 80)
     @Column(nullable = false, length = 80)
     @Schema(description = "Nome completo do paciente", maxLength = 80)
-    private String nomePaciente;
+    private String nome;
 
     @CPF
     @Column(length = 11)
@@ -54,7 +54,7 @@ public class Paciente {
     @Schema(description = "E-mail do paciente")
     private String email;
 
-    @NotBlank
+    
     @Past
     @Column(name = "data_nascimento", nullable = false)
     @Schema(description = "Data de nascimento do paciente")
