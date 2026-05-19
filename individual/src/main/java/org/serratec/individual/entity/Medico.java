@@ -51,7 +51,7 @@ public class Medico {
 
     @Email
     @Column(unique = true, nullable = false)
-    @Schema(description = "E-mail do paciente")
+    @Schema(description = "E-mail do medico")
     private String email;
 
     @Column(name = "data_contratacao", nullable = false)
