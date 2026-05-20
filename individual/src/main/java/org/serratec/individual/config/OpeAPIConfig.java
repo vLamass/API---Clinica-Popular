@@ -15,22 +15,22 @@ public class OpeAPIConfig {
 
     @Bean
     public OpenAPI myOpenAPI(){
-
+        
         Contact contato  = new Contact();
-        contato.setEmail("email");
-        contato.setName("name");
-        contato.url("url");
+        contato.setEmail("viniciuslamas@gmail.com");
+        contato.setName("Vinicius Lamas");
+        contato.url("https://github.com/vLamass");
 
         License apacheLicense = new License()
-            .name("Apache License")
-            .url("site");
+            .name("Apache License 2.0")
+            .url("\"https://www.apache.org/licenses/LICENSE-2.0\"");
         
 
         Info info = new Info()
-        .title("")  
+        .title("Clínica Popular")  
         .version("1.0")
         .contact(contato)
-        .description("")
+        .description("Documentação da API do sistema")
         .termsOfService("")
         .license(apacheLicense);
 

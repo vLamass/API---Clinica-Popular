@@ -1,5 +1,6 @@
 package org.serratec.individual.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.serratec.individual.dto.request.PacienteDTORequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -63,6 +65,13 @@ public class PacienteController {
     })
     public ResponseEntity<PacienteDTOResponse> inserir(@Valid @RequestBody PacienteDTORequest dto){
         PacienteDTOResponse criado = service.inserir(dto);
+
+            URI uri = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(criado.getId())
+				.toUri();
+                
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
     }
 

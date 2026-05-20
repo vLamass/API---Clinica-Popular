@@ -42,7 +42,7 @@ public class EspecialidadeService {
     }
 
     @Transactional
-    public EspecialidadesDTOResponse inserir(EspecialidadesDTORequest dto){
+    public EspecialidadesDTOResponse inserir( EspecialidadesDTORequest dto){
 
         Especialidade especialidade = new Especialidade();
 
