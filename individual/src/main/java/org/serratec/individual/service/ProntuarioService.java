@@ -42,7 +42,7 @@ public class ProntuarioService {
     }
     
     @Transactional
-    public ProntuarioDTOResponse inserir(Long id, ProntuarioDTORequest dto) { 
+    public ProntuarioDTOResponse inserir(ProntuarioDTORequest dto) { 
 
         Paciente paciente =pacienteRepository.findById(dto.getPacienteId())
             .orElseThrow(()-> new RuntimeException("Paciente não encontrado"));
