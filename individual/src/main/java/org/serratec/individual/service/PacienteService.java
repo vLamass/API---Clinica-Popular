@@ -6,6 +6,8 @@ import java.util.List;
 import org.serratec.individual.dto.request.PacienteDTORequest;
 import org.serratec.individual.dto.response.PacienteDTOResponse;
 import org.serratec.individual.entity.Paciente;
+import org.serratec.individual.exception.ConflictException;
+import org.serratec.individual.exception.NotFoundException;
 import org.serratec.individual.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +35,7 @@ public class PacienteService {
     public PacienteDTOResponse findByID(Long id){
 
         Paciente paciente = pacienteRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("Paciente não Encontrado"));
+            .orElseThrow(()-> new NotFoundException("Paciente não Encontrado"));
 
         return new PacienteDTOResponse(paciente);    
     }
@@ -43,11 +45,11 @@ public class PacienteService {
     public PacienteDTOResponse inserir (PacienteDTORequest dto){
 
         if(pacienteRepository.existsByCpf(dto.getCpf())){
-            throw new RuntimeException("CPF já cadastrado");
+            throw new ConflictException("CPF já cadastrado");
         }
 
         if(pacienteRepository.existsByEmail(dto.getEmail())){
-            throw new RuntimeException("Email já cadastrado");
+            throw new ConflictException("Email já cadastrado");
         }
 
         Paciente paciente = new Paciente();
@@ -66,7 +68,7 @@ public class PacienteService {
     public PacienteDTOResponse atualizar (Long id, PacienteDTORequest dto){
 
         Paciente paciente = pacienteRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("Paciente não Encontrado"));
+            .orElseThrow(()-> new NotFoundException("Paciente não Encontrado"));
 
         paciente.setNome(dto.getNome());
         paciente.setCpf(dto.getCpf());
@@ -83,7 +85,7 @@ public class PacienteService {
     public void deletar (Long id){
         
         Paciente paciente = pacienteRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("Paciente não Encontrado"));
+            .orElseThrow(()-> new NotFoundException("Paciente não Encontrado"));
 
         pacienteRepository.delete(paciente);    
     }

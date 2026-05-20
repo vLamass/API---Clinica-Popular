@@ -4,8 +4,16 @@ import java.time.LocalDate;
 
 import org.serratec.individual.entity.Paciente;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import lombok.Getter;
 import lombok.Setter;
+
+@JsonPropertyOrder({
+    "id",
+    "nome",
+    "dataNascimento"
+})
 
 @Getter
 @Setter

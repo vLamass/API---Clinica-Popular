@@ -2,9 +2,9 @@ package org.serratec.individual.controller;
 
 import java.util.List;
 
-import org.serratec.individual.dto.request.PacienteDTORequest;
-import org.serratec.individual.dto.response.PacienteDTOResponse;
-import org.serratec.individual.service.PacienteService;
+import org.serratec.individual.dto.request.MedicoDTORequest;
+import org.serratec.individual.dto.response.MedicoDTOResponse;
+import org.serratec.individual.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,42 +13,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 
-
-
 @RestController
-@RequestMapping("/pacientes")
-public class PacienteController {
+@RequestMapping
+public class MedicoController {
 
-    @Autowired PacienteService service;
+    @Autowired MedicoService service;
 
     @GetMapping
-    public ResponseEntity<List<PacienteDTOResponse>> findAll(){
-        List<PacienteDTOResponse> pacientes = service.findAll();
-            return ResponseEntity.ok(pacientes);
+    public ResponseEntity<List<MedicoDTOResponse>> findAll(){
+        List<MedicoDTOResponse> medicos = service.findAll();
+            return ResponseEntity.ok(medicos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTOResponse> findById(@PathVariable Long id){
-        PacienteDTOResponse paciente = service.findByID(id);
-            return ResponseEntity.ok(paciente);
+    public ResponseEntity<MedicoDTOResponse> findById(@PathVariable Long id){
+        MedicoDTOResponse medico = service.findByID(id);
+            return ResponseEntity.ok(medico);
     }
 
     @PostMapping
-    public ResponseEntity<PacienteDTOResponse> inserir(@Valid @RequestBody PacienteDTORequest dto){
-        PacienteDTOResponse criado = service.inserir(dto);
+    public ResponseEntity<MedicoDTOResponse> inserir(@Valid @RequestBody MedicoDTORequest dto){
+        MedicoDTOResponse criado = service.inserir(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PacienteDTOResponse> atualizar(@Valid @PathVariable Long id, @RequestBody PacienteDTORequest dto){
-        PacienteDTOResponse atualizado = service.atualizar(id, dto);
+    public ResponseEntity<MedicoDTOResponse> atualizar(@Valid @PathVariable Long id, @RequestBody MedicoDTORequest dto){
+        MedicoDTOResponse atualizado = service.atualizar(id, dto);
             return ResponseEntity.ok(atualizado);
     }
 
@@ -56,6 +54,5 @@ public class PacienteController {
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deletar(id);
             return ResponseEntity.noContent().build();
-
     }
 }
