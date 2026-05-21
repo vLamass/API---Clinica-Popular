@@ -62,7 +62,7 @@ public class Medico {
 
     @OneToMany(mappedBy = "medico")
     private List<Consulta> consultas;
-
+    
     @ManyToMany
     @JoinTable(
         name = "medico_especialidade",

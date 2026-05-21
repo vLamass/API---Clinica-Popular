@@ -16,7 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,12 +38,12 @@ public class Consulta {
     @Schema(description = "ID da consulta")
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Column(name = "data_consulta", nullable = false)
     @Schema(description = "Data da consulta")
     private LocalDate dataConsulta;
 
-    @NotBlank
+    @NotNull
     @Column(name = "hora_consulta", nullable = false )
     @Schema(description = "Hora da consulta")
     private LocalTime horaConsulta;
